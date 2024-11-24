@@ -5,13 +5,13 @@ const service = new CustomerService();
 
 export class CustomerController {
     async getAllCustomer(req: Request, res: Response): Promise<void> {
-        const customers = await service.getAllCustomer();
+        let customers = await service.getAllCustomer();
         res.json(customers);
     }
 
     async getCustomerById(req: Request, res: Response): Promise<void> {
-        const id = parseInt(req.params.id);
-        const customer = await service.getCustomerById(id);
+        let id = parseInt(req.params.id);
+        let customer = await service.getCustomerById(id);
         if (customer) {
             res.json(customer);
         } else {
@@ -20,8 +20,8 @@ export class CustomerController {
     }
 
     async deleteCustomer(req: Request, res: Response): Promise<void> {
-        const id = parseInt(req.params.id);
-        const result = await service.deleteCustomer(id);
+        let id = parseInt(req.params.id);
+        let result = await service.deleteCustomer(id);
         if (result) {
             res.json({ message: "Customer deleted successfully" });
         } else {
@@ -30,13 +30,13 @@ export class CustomerController {
     }
 
     async createCustomer(req: Request, res: Response): Promise<void> {
-        const id = await service.createCustomer(req.body);
+        let id = await service.createCustomer(req.body);
         res.status(201).json({ id });
     }
 
     async updateCustomer(req: Request, res: Response): Promise<void> {
-        const id = parseInt(req.params.id);
-        const updated = await service.updateCustomer(id, req.body);
+        let id = parseInt(req.params.id);
+        let updated = await service.updateCustomer(id, req.body);
         if (updated) {
             res.json({ message: 'Customer updated successfully' });
         } else {

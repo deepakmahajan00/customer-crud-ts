@@ -3,14 +3,14 @@ import { CustomerSources } from '../enums/customerEnum';
 
 class ValidateCustomer {
     validate (req: Request, res: Response, next: NextFunction): void {
-        const { name, email, age, source } = req.body;
+        let { name, email, age, source } = req.body;
 
         if (!name || typeof name != 'string') {
             res.status(400).json({ error: 'Invalid name' });
             return;
         }
 
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!email || typeof email != 'string' || !email.includes('@') || !emailRegex.test(email)) {
             res.status(400).json({ error: 'Invalid email' });
             return;
